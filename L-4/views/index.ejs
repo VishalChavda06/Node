@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Student Management System</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        <% StudentData.forEach(student => { %>
+            <tr>
+                <td><%= student.name %></td>
+                <td><%= student.email %></td>
+                <td><%= student.phone %></td>
+            </tr>
+        <% }) %>
+        <a href="/form">Add Student</a>
+    </table>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+    <style>
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</body>
+</html>
