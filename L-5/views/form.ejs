@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Stundet Form Page</h1>
+
+    <form action="./insetStudent" method="POST" >
+        <div>
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" required>
+        </div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="age">age</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <button type="submit">Create New Stundet</button>
+    </form>
+
+    <!-- show Student List Here -->
+     <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Action</th>
+      </tr>
+      <% Students.map((data)=>{ %>
+        <tr>
+          <td>
+            <%= data.id %>
+          </td>
+          <td>
+            <%= data.name %>
+          </td>
+          <td>
+            <%= data.email %>
+          </td>
+          <td>
+            <%= data.age %>
+          </td>
+          <td>
+            <a href="/editStudent/<%= data.id %>">Edit</a>
+          </td>
+          <td>
+            <a href="/deleteStudent/<%= data.id %>">Delete</a>
+          </td>
+         
+        </tr>
+      <% }) %>
+     </table>
+</body>
+</html>
