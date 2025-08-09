@@ -48,39 +48,52 @@ app.post("/insetStudent", (req, res) => {
     email: email,
   };
   Students.push(student);
-  console.log(Students);
-  console.log(" 🟢 Stundet are successfully added..! ");
-
+  console.log("==============================");
+  console.log("🟢 Student Added Successfully!");
+  console.log("New Student:", student);
+  console.log("Current Students List:", Students);
+  console.log("==============================");
   return res.redirect("/form");
 });
 
 // delete student by id
 app.get("/deleteStundet", (req, res) => {
   let studentId = parseInt(req.query.id);
+  const beforeDelete = [...Students];
   let newDelete = Students.filter((student) => {
     return student.id !== studentId;
   });
+  const deletedStudent = beforeDelete.find(s => s.id === studentId);
   Students = newDelete;
-  console.log(" 🔴 Student deleted successfully!");
-  console.log(Students);
+  console.log("==============================");
+  if (deletedStudent) {
+    console.log("🔴 Student Deleted Successfully!");
+    console.log("Deleted Student:", deletedStudent);
+  } else {
+    console.log("⚠️  No student found with id:", studentId);
+  }
+  console.log("Current Students List:", Students);
+  console.log("==============================");
   return res.redirect("/form");
 });
 
 // Edit Student by id
 app.get("/editStudent", (req, res) => {
   let studentEditId = parseInt(req.query.id);
-  console.log(studentEditId);
   let editStd = Students.find((student) => student.id === studentEditId);
   if (!editStd) {
+    console.log("❌ Student not found for editing. ID:", studentEditId);
     return res.status(404).send("Student not found");
   }
-  console.log(" 🟢 Student is ready to edit!" , editStd);
+  console.log("==============================");
+  console.log("✏️  Student is ready to edit!", editStd);
+  console.log("==============================");
   return res.render("editStudent", { editStd });
 });
 
 app.post("/editStudent", (req, res) => {
     let studentId = parseInt(req.body.id);
-    console.log(" 🟢 Student ID to be updated: ", studentId);
+    const beforeEdit = Students.find(s => s.id === studentId);
     Students = Students.map((student) => {
       if (student.id === studentId) {
         student.name = req.body.name;
@@ -89,7 +102,16 @@ app.post("/editStudent", (req, res) => {
       }
       return student;
     });
-    console.log(" 🟢 Student updated successfully!");
-    console.log(Students);
+    const afterEdit = Students.find(s => s.id === studentId);
+    console.log("==============================");
+    if (beforeEdit) {
+      console.log("🟢 Student Updated Successfully!");
+      console.log("Before:", beforeEdit);
+      console.log("After:", afterEdit);
+    } else {
+      console.log("⚠️  No student found to update with id:", studentId);
+    }
+    console.log("Current Students List:", Students);
+    console.log("==============================");
     return res.redirect("/form");
   });
