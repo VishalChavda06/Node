@@ -1,0 +1,24 @@
+const studentSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        require:ture
+    },
+    email:{
+        type:String,
+        require:ture,
+        unique:true
+    },
+    phone:{
+        type:Number,
+        require:true,
+        unique:true
+    },
+    dateOfBirth:{
+        type:Date,
+        require:true
+    },
+    address:{
+        type:String,
+        require:true
+    }
+})
